@@ -15,12 +15,13 @@ bwrap \
     --proc /proc \
     --tmpfs /tmp \
     --bind /home/joachim/.thunderbird /home/joachim/.thunderbird \
+    --bind /home/joachim/.config/gtk-3.0/settings.ini /home/joachim/.config/gtk-3.0/settings.ini \
+    --bind /home/joachim/.config/dconf/user /home/joachim/.config/dconf/user \
     --bind /home/joachim/Downloads /home/joachim/Downloads \
     --setenv HOME /home/joachim \
-    --setenv MOZ_ENABLE_WAYLAND 1 \
     --setenv PATH /run/current-system/sw/bin \
     --hostname RESTRICTED \
     --unshare-all \
     --share-net \
     --new-session \
-    thunderbird
+    thunderbird $@
