@@ -17,11 +17,11 @@ bwrap \
     --ro-bind /sys/bus/pci /sys/bus/pci \
     --proc /proc \
     --tmpfs /tmp \
-    --bind /home/joachim/.thunderbird /home/joachim/.thunderbird \
-    --bind /home/joachim/.config/gtk-3.0/settings.ini /home/joachim/.config/gtk-3.0/settings.ini \
-    --bind /home/joachim/.config/dconf/user /home/joachim/.config/dconf/user \
-    --bind /home/joachim/Downloads /home/joachim/Downloads \
-    --setenv HOME /home/joachim \
+    --bind "$HOME"/.thunderbird "$HOME"/.thunderbird \
+    --bind "$HOME"/.config/gtk-3.0/settings.ini "$HOME"/.config/gtk-3.0/settings.ini \
+    --bind "$HOME"/.config/dconf/user "$HOME"/.config/dconf/user \
+    --bind "$HOME"/Downloads "$HOME"/Downloads \
+    --setenv HOME "$HOME" \
     --setenv PATH /run/current-system/sw/bin \
     --hostname RESTRICTED \
     --unshare-all \
