@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+bwrap \
+    --ro-bind /nix/store /nix/store \
+    --ro-bind /run/current-system/sw /run/current-system/sw \
+    --ro-bind /run/opengl-driver /run/opengl-driver \
+    --ro-bind /run/dbus /run/dbus \
+    --ro-bind /run/udev /run/udev \
+    --ro-bind /run/systemd /run/systemd \
+    --ro-bind /etc /etc \
+    --ro-bind /sys/dev/char /sys/dev/char \
+    --ro-bind /sys/devices/pci0000:00 /sys/devices/pci0000:00 \
+    --ro-bind /sys/bus/pci /sys/bus/pci \
+    --dir "$XDG_RUNTIME_DIR" \
+    --ro-bind "$XDG_RUNTIME_DIR"/bus "$XDG_RUNTIME_DIR"/bus \
+    --ro-bind "$XDG_RUNTIME_DIR"/pulse "$XDG_RUNTIME_DIR"/pulse \
+    --ro-bind "$XDG_RUNTIME_DIR"/wayland-1 "$XDG_RUNTIME_DIR"/wayland-1 \
+    --dev /dev \
+    --dev-bind /dev/dri /dev/dri \
+    --proc /proc \
+    --tmpfs /tmp \
+    --tmpfs "$HOME" \
+    --bind "$HOME"/.config/spotify "$HOME"/.config/spotify \
+    --bind "$HOME"/.cache/spotify "$HOME"/.cache/spotify \
+    --bind "$HOME"/.config/gtk-3.0/settings.ini "$HOME"/.config/gtk-3.0/settings.ini \
+    --bind "$HOME"/.config/dconf/user "$HOME"/.config/dconf/user \
+    --setenv HOME "$HOME" \
+    --setenv PATH /run/current-system/sw/bin \
+    --hostname RESTRICTED \
+    --unshare-all \
+    --share-net \
+    --new-session \
+    spotify --enable-features=UseOzonePlatform --ozone-platform=wayland $@
