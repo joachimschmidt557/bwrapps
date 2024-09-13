@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+mkdir -p "$HOME"/.config/Element
+
 bwrap \
     --ro-bind /nix/store /nix/store \
     --ro-bind /run/current-system/sw /run/current-system/sw \
@@ -23,6 +25,7 @@ bwrap \
     --bind "$HOME"/.config/Element "$HOME"/.config/Element \
     --bind "$HOME"/.config/gtk-3.0/settings.ini "$HOME"/.config/gtk-3.0/settings.ini \
     --bind "$HOME"/.config/dconf/user "$HOME"/.config/dconf/user \
+    --bind "$HOME"/Downloads "$HOME"/Downloads \
     --setenv HOME "$HOME" \
     --setenv PATH /run/current-system/sw/bin \
     --hostname RESTRICTED \
